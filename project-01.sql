@@ -25,3 +25,9 @@ insert into transacao (tipo, nome, valor, data_cadastro) values
 
 /*Query que retorna todas as transações cadastradas em ordem crescente da data de cadastro*/
 select * from transacao order by data_cadastro asc;
+
+/*Query que retorna o saldo acumulado considerando todas as transações cadastradas*/
+select sum(valor) from transacao where valor is not null;
+
+/*Query que exclui todas as transações*/
+delete from transacao;
