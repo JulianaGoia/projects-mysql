@@ -55,19 +55,19 @@ create table equipe (
       (52, 'Marcelo', 'Cada sonho que vc deixa para trás, é um pedaço do seu futuro...', 'https://github.com/ iMarceloCorrea', 'email@email.com', 'https://www.linkedin.com/marcelo-correa', 'C:\...\marcelo.png'),
       (52, 'Leonardo', 'Amante da tecnologia, estudioso e curioso...', 'https://github.com/mwsleonardo',  'email@email.com', 'https://www.linkedin.com/mwsleonardo', 'C:\...\leonardo.png');
 
-  /*query que retorna todos os dados da tabela equipe*/
+/*query que retorna todos os dados da tabela equipe*/
     select * from equipe;
 
-  /*query que atualiza dados da tabela equipe*/
+/*query que atualiza dados da tabela equipe*/
     update equipe
     set email ='goia.julianakg@gmail.com'
     where id = 2;
 
-  /*query que deleta dados da tabela equipe*/
+/*query que deleta dados da tabela equipe*/
     delete from equipe where id = 4;
 
-  /*TABELA LOGIN*/
-  /*inserção de dados na tabela login*/
+/*TABELA LOGIN*/
+/*inserção de dados na tabela login*/
     create table login (
     id int not null auto_increment,
     email varchar(300) not null,
@@ -75,17 +75,52 @@ create table equipe (
     primary key (id)
   );
 
-  /*inserção de dados na tabela login*/
-  insert into login (email, senha) values
-    ('newtab@academy.com', '123456');
+/*inserção de dados na tabela login*/
+    insert into login (email, senha) values
+      ('newtab@academy.com', '123456');
 
-  /*query que retorna todos os dados da tabela login*/
+/*query que retorna todos os dados da tabela login*/
     select * from login;
 
-  /*query que atualiza dados da tabela login*/
+/*query que atualiza dados da tabela login*/
     update login
     set senha ='145236'
     where id = 1;
 
-  /*query que deleta dados da tabela login*/
+/*query que deleta dados da tabela login*/
     delete from equipe where id = 1;
+
+/*TABELA TWITTER*/
+/*tabela que mostra tweets resultados da busca*/
+    create table tweet (
+      id_tweet int not null auto_increment,
+      nome varchar(100) not null,
+      user varchar(30) not null,
+      foto blob,
+      texto varchar(280),  /*limite de caracteres permitidos em um tweet*/
+      data_tweet date,
+      hora_tweet time,
+      link varchar(1000),
+      primary key (id)
+    );
+
+/*indices para a tabela tweet*/
+      create index busca_tweet on tweet (nome, user, data_tweet)
+      order by data_tweet desc;
+
+/*inserção de dados na tabela tweet*/
+      insert into hashtag_finder.resultados_busca (nome, user, foto, texto, data_tweet, hora_tweet) values
+        ('Rafaela', '@rafa', 'C:\...\rafaela.png', 'Lorem ipsum dolor', '2021-10-04', '23:40:17'),
+        ('Julio', '@julio', 'C:\...\julio.png', 'Lorem ipsum dolor', '2021-09-25', '12:30:26'),
+        ('Giovana', '@giovana', 'C:\...\giovana.png', 'Lorem ipsum dolor', '2021-06-10', '10:45:14');
+
+/*query que retorna todos os dados da tabela login*/
+    select * from tweet;
+
+/*query que atualiza dados da tabela login*/
+    update tweet
+    set user ='@julio123'
+    where id = 2;
+
+/*query que deleta dados da tabela login*/
+    delete from tweet where id = 3;
